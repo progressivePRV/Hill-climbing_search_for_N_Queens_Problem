@@ -1,7 +1,7 @@
 from NQueens import board
 import random
 
-def Hill_Climbing(N=0,iteration = 100,debug=False,sideways_moves=1):
+def Hill_Climbing(N=0,iteration = 100,debug=False,sideways_moves=100):
     '''
     This program will utilize hill climibing algorithm with sideways move to find
     solution for N Queens problem. For heuristic this progarm is using
@@ -16,6 +16,7 @@ def Hill_Climbing(N=0,iteration = 100,debug=False,sideways_moves=1):
     total = iteration # total number of runs/iterations
     avg_steps_in_success = 0
     avg_steps_in_fail = 0
+    avg_random_restart = 0
     for i in range(total):
         print("run ",i)
         # create a board with randomly placed N queens
@@ -65,11 +66,21 @@ def Hill_Climbing(N=0,iteration = 100,debug=False,sideways_moves=1):
                         level+=1 # increase the step counter
                     else:
                         # limit of sidways moves is up
-                        break
+                        #break
+                        '''
+                        in place of break we will do random restart and continue
+                        '''
+                        avg_random_restart += 1
+                        current = board(N)
                 else:
                     # no better or equal H-value state found
                     # => found local minima => can be a gloabal minima
-                    break
+                    #break
+                    '''
+                    in place of break we will do random restart and continue
+                    '''
+                    avg_random_restart += 1
+                    current = board(N)
             else:
                 # found a better state
                 current = next_state # change next_state to current
@@ -87,14 +98,9 @@ def Hill_Climbing(N=0,iteration = 100,debug=False,sideways_moves=1):
             faliure += 1
             avg_steps_in_fail += level
     print("success rate=>",(success/total)*100,"%")
-    if success>0:
-        print("average steps required for success=>",avg_steps_in_success/success)
-    else:
-        print("There was no success, no average steps for success")
-    if faliure>0:
-        print("average steps required for failure=>",avg_steps_in_fail/faliure)
-    else:
-        print("There was no failure, no average steps for failure")
+    print("average steps required for success=>",avg_steps_in_success/success)
+##    print("average steps required for failure=>",avg_steps_in_fail/faliure) ## there will be no faliure
+    print("average random restart=>",avg_random_restart/total)
         
 
 

@@ -63,7 +63,7 @@ def Hill_Climbing(N=0,iteration = 100,debug=False):
     print("success rate=>",(success/total)*100,"%")
     print("average steps required for success=>",avg_steps_in_success/success)
     #print("average steps required for failure=>",avg_steps_in_fail/faliure)
-    print("average random restarts required=>",random_restart/total)
+    print("average random restarts required (random_restarts/iterations)=>",random_restart/total)
         
 
 

@@ -41,31 +41,33 @@ def main():
         print_Error("please provide interger")
         return
     # option to select whether to see states or not
-    debug = input("Do you want to see the steps (selected states)? y/n (n - default)=>")
+    debug = input("Do you want to see the steps (selected states)? y/n [n - default]=>")
     if debug=='y':
         debug=True
     else:
         debug=False
 
     def ask_for_side_ways_moves():
-        moves = input("please provide sideways moves limit (>0 and <100)=>")
+        moves = input("please provide sideways moves limit (>0 and <100) [default 100]=>")
         try:
             moves = int(moves)
             if moves>4 or moves<1:
                 raise Error("problem")
+            return moves
         except ValueError:
             print_Error("please provide interger")
-            return
+            return 100
         except:
             print_Error("please provide interger between 0 and 100 (exclusive)")
-            return
-        
+            return 100
+    '''
+    after all the validations go with the selected algorithm
+    ''' 
     if option==2:
         print("chossing Hill-climbing search with sideways move")
         sideways_moves = ask_for_side_ways_moves()
-        if sideways_moves == None:
-            # note provided proper input
-            return
+        print("set limit on side ways moves  to :",sideways_moves)
+        
         from Hill_climbing_sideways_move import Hill_Climbing
         Hill_Climbing(N,total_runs,debug,sideways_moves)
          
@@ -77,9 +79,15 @@ def main():
         pass
     elif option==4:
         print("chossing Random-restart hill-climbing search with sideways")
+        sideways_moves = ask_for_side_ways_moves()
+        print("set limit on side ways moves  to :",sideways_moves)
+        
+        from Hill_climbing_sideways_move_random_restart import Hill_Climbing
+        Hill_Climbing(N,total_runs,debug,sideways_moves)
         pass
     else:
         print("chossing Hill climbing search ")
+        
         from Hill_climbing import Hill_Climbing
         Hill_Climbing(N,total_runs,debug)
 

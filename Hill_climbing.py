@@ -51,9 +51,14 @@ def Hill_Climbing(N=0,iteration = 100,debug=False):
             faliure += 1
             avg_steps_in_fail += level
     print("success rate=>",(success/total)*100,"%")
-    print("average steps required for success=>",avg_steps_in_success/success)
-    print("average steps required for failure=>",avg_steps_in_fail/faliure)
-        
+    if success>0:
+        print("average steps required for success=>",avg_steps_in_success/success)
+    else:
+        print("There was no success, no average steps for success")
+    if faliure>0:
+        print("average steps required for failure=>",avg_steps_in_fail/faliure)
+    else:
+        print("There was no failure, no average steps for failure")
 
 
 if __name__ == "__main__":
