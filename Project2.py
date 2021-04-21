@@ -8,6 +8,7 @@ def print_Error(err):
     print("###### Error =>",err)
 
 
+
 def main():
     # give number of queens (N)
     N = input("Give N for 'N-Queens' Problem=>")
@@ -90,6 +91,7 @@ def main():
         
         from Hill_climbing import Hill_Climbing
         Hill_Climbing(N,total_runs,debug)
+    input("\n press any character")
 
 if __name__ == '__main__':
     main()
